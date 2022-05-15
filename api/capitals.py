@@ -12,17 +12,16 @@ class handler(BaseHTTPRequestHandler):
         name = dict(query_string_list)
 
         if "word" in name:
-            url = "https://restcountries.com/v3.1/name"
+            url = "https://restcountries.com/v3.1/name/"
             full_url = url + name["word"]
             response = requests.get(full_url)
-            data= response.json()
+            data = response.json()
             
             capitals = []
-            for capital in data:
-              caps = capital["capital"]
+            for capital_name in data:
+              caps = capital_name["capital"]
               capitals.append(caps)
-            messagge= str(f"The capital of {name} is {capitals}.")
-
+              message= str(f"The capital of {name['word']} is {capitals[0][0]}.")
 
         else:
             message = "give me a word to define please"
@@ -30,5 +29,5 @@ class handler(BaseHTTPRequestHandler):
         self.send_response(200)
         self.send_header('Content-type', 'text/plain')
         self.end_headers()
-        self.wfile.write('hello World'.encode())
+        self.wfile.write(message.encode())
         return
