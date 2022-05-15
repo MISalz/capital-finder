@@ -51,7 +51,7 @@ pip install requests
 
 Deployed site: 
 
-https://capital-finder-pearl.vercel.app/api/capitals
+https://capital-finder-pearl.vercel.app/api/capitals?word={capital_name}
 
 
 ---
